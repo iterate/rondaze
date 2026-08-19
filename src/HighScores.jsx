@@ -49,7 +49,7 @@ const HighScores = () => {
   useEffect(() => {
     const fetchHighScores = async () => {
       try {
-        const response = await fetch('https://rondaze-server-749067412044.europe-west1.run.app/api/highscores');
+        const response = await fetch(`${config.API_URL}/api/highscores`);
         if (!response.ok) {
           throw new Error('Failed to fetch high scores');
         }
@@ -91,11 +91,12 @@ const HighScores = () => {
           <DataGrid
             rows={highScores}
             columns={columns}
-            pageSize={10}
-            rowsPerPageOptions={[10]}
+            pageSizeOptions={[10]}
             disableSelectionOnClick
-            maxWidth={100}
             initialState={{
+              pagination: {
+                paginationModel: { pageSize: 10 },
+              },
               sorting: {
                 sortModel: [{ field: 'score', sort: 'desc' }],
               },

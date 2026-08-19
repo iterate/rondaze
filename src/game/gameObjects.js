@@ -1,7 +1,7 @@
 import { Asteroid, Nuke } from "./models.js";
 import { applyGravity, areCirclesClose, areCirclesColliding, atmosphericDrag } from "./physics.js";
 
-export function createGameObjects(planet, levelConfig) {
+export function createGameObjects(planet, levelConfig, canvas) {
   let nukes = [];
   let asteroids = [];
   let asteroidCounter = 0;
@@ -19,9 +19,9 @@ export function createGameObjects(planet, levelConfig) {
       const numAsteroids = clusterRoll < 1/9 ? 3: clusterRoll < 1/3 ? 2 : 1;
 
       // Base position for the first asteroid
-      var xpos = window.innerWidth;
-      var ypos = window.innerHeight;
-      
+      var xpos = canvas.width;
+      var ypos = canvas.height;
+
       if (Math.random() < 0.5) {
         xpos = xpos * Math.random();
       } else {
@@ -67,11 +67,15 @@ export function createGameObjects(planet, levelConfig) {
     nukes.push(nuke);
   }
 
-  function updateObjects(spacecraft, isTutorial, score, arrowUpPressed) {
+  function updateObjects(spacecraft, isTutorial, score, arrowUpPressed, arrowDownPressed) {
     // Update spacecraft
     if (arrowUpPressed) {
       spacecraft.velocity_x += Math.sin(spacecraft.angle) * 0.003;
       spacecraft.velocity_y -= Math.cos(spacecraft.angle) * 0.003;
+    }
+    if (arrowDownPressed) {
+      spacecraft.velocity_x -= Math.sin(spacecraft.angle) * 0.003;
+      spacecraft.velocity_y += Math.cos(spacecraft.angle) * 0.003;
     }
 
     spacecraft.x += spacecraft.velocity_x;
@@ -101,7 +105,7 @@ export function createGameObjects(planet, levelConfig) {
         nukes[i].activated = true;
       }
 
-      if (areCirclesColliding(planet, nukes[i])) {
+      if (areCirclesColliding(planet, nukes[i]) || nukes[i].isOutOfBounds(canvas.width, canvas.height)) {
         nukes.splice(i, 1);
         i--;
         continue;
@@ -198,6 +202,11 @@ export function createGameObjects(planet, levelConfig) {
 
       asteroid1.velocity_x *= 1 - (asteroid_drag_x * Math.abs(asteroid1.velocity_x));
       asteroid1.velocity_y *= 1 - (asteroid_drag_y * Math.abs(asteroid1.velocity_y));
+
+      if (asteroid1.isOutOfBounds(canvas.width, canvas.height)) {
+        asteroids.splice(i, 1);
+        i--;
+      }
     }
   }
 

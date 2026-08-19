@@ -1,5 +1,6 @@
 export function createInputHandlers(spacecraft, isTutorial) {
   let arrowUpPressed = false;
+  let arrowDownPressed = false;
 
   function handleKeyDown(event) {
     // Prevent Enter key from being processed in tutorial mode
@@ -21,7 +22,7 @@ export function createInputHandlers(spacecraft, isTutorial) {
         arrowUpPressed = true;
         break;
       case "ArrowDown":
-        spacecraft.speed -= 0.1;
+        arrowDownPressed = true;
         break;
       case "Space":
         // In tutorial, prevent spacebar from triggering other events
@@ -41,12 +42,15 @@ export function createInputHandlers(spacecraft, isTutorial) {
   function handleKeyUp(event) {
     if (event.code === "ArrowUp") {
       arrowUpPressed = false;
+    } else if (event.code === "ArrowDown") {
+      arrowDownPressed = false;
     }
   }
 
   return {
     handleKeyDown,
     handleKeyUp,
-    isArrowUpPressed: () => arrowUpPressed
+    isArrowUpPressed: () => arrowUpPressed,
+    isArrowDownPressed: () => arrowDownPressed
   };
-} 
+}

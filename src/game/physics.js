@@ -1,14 +1,5 @@
 import { GRAVITY_CONSTANT, DAMPING_FACTOR } from "./constants.js";
 
-export function acceleration(radius, planet_mass) {
-  const gravity = 35; // Gravitational constant
-  if (radius < 0) {
-    return -gravity * (planet_mass / (radius * radius));
-  } else {
-    return gravity * (planet_mass / (radius * radius));
-  }
-}
-
 export function applyGravity(planet, x, y, velocity_x, velocity_y) {
   const dx = planet.x - x;
   const dy = planet.y - y;

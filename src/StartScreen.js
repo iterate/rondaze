@@ -16,23 +16,23 @@ const StartScreen = ({ onStart }) => {
     };
 
     const handleHighScores = () => {
-        navigate('/game-over');
+        navigate('/high-scores');
     };
 
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'Enter') {
-                handleStartGame();
+                navigate('/game');
             }
         };
 
         window.addEventListener('keydown', handleKeyDown);
-        
+
         // Cleanup event listener when component unmounts
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    }, [navigate]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -75,18 +75,6 @@ const StartScreen = ({ onStart }) => {
         }
 
         animate();
-
-        function resizeGameCanvas() {
-        const container = document.querySelector('.game-container');
-        const canvas = container.querySelector('canvas');
-        canvas.width = container.offsetWidth;
-        canvas.height = container.offsetHeight;
-        }
-        window.addEventListener('resize', resizeGameCanvas);
-
-        return () => {
-            window.removeEventListener('resize', resizeGameCanvas);
-        };
     }, []);
 
     return (

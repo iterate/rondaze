@@ -7,7 +7,6 @@ import './GameLoader.css';
 const GameLoader = () => {
     const canvasRef = useRef(null);
     const [showInfo, setShowInfo] = useState(true);
-    const [score, setScore] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,10 +24,6 @@ const GameLoader = () => {
     }, []);
 
     useEffect(() => {
-        console.log(score)
-    }, [score]);
-
-    useEffect(() => {
         if (!showInfo) {
             const canvas = canvasRef.current;
             const ctx = canvas.getContext('2d');
@@ -37,16 +32,10 @@ const GameLoader = () => {
             canvas.width = CANVAS.WIDTH;
             canvas.height = CANVAS.HEIGHT;
 
-
-            setScore(startGame(canvas, ctx, navigate));
-
-            const handleGameOver = () => {
-            };
-
-            window.addEventListener("gameOver", handleGameOver);
+            const gameInstance = startGame(canvas, ctx, navigate);
 
             return () => {
-                window.removeEventListener("gameOver", handleGameOver);
+                gameInstance.cleanup();
             };
         }
     }, [showInfo, navigate]);

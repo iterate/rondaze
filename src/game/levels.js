@@ -1,3 +1,5 @@
+import { SPACECRAFT_SPAWN } from "./constants.js";
+
 export const TUTORIAL_LEVELS = {
     0: {
         // Initial level - just the player and planet
@@ -19,12 +21,9 @@ export const TUTORIAL_LEVELS = {
             }
         },
         spacecraft: {
-            xOffset: 100,
-            yOffset: 200,
-            initialVelocity: {
-                x: 0.5,
-                y: 0
-            }
+            xOffset: SPACECRAFT_SPAWN.X_OFFSET,
+            yOffset: SPACECRAFT_SPAWN.Y_OFFSET,
+            initialVelocity: SPACECRAFT_SPAWN.INITIAL_VELOCITY
         }
     },
     1: {
@@ -47,12 +46,9 @@ export const TUTORIAL_LEVELS = {
             }
         },
         spacecraft: {
-            xOffset: 100,
-            yOffset: 200,
-            initialVelocity: {
-                x: 0.5,
-                y: 0
-            }
+            xOffset: SPACECRAFT_SPAWN.X_OFFSET,
+            yOffset: SPACECRAFT_SPAWN.Y_OFFSET,
+            initialVelocity: SPACECRAFT_SPAWN.INITIAL_VELOCITY
         }
     },
     2: {
@@ -75,12 +71,9 @@ export const TUTORIAL_LEVELS = {
             }
         },
         spacecraft: {
-            xOffset: 100,
-            yOffset: 200,
-            initialVelocity: {
-                x: 0.5,
-                y: 0
-            }
+            xOffset: SPACECRAFT_SPAWN.X_OFFSET,
+            yOffset: SPACECRAFT_SPAWN.Y_OFFSET,
+            initialVelocity: SPACECRAFT_SPAWN.INITIAL_VELOCITY
         }
     },
     3: {
@@ -103,12 +96,9 @@ export const TUTORIAL_LEVELS = {
             }
         },
         spacecraft: {
-            xOffset: 100,
-            yOffset: 200,
-            initialVelocity: {
-                x: 0.5,
-                y: 0
-            }
+            xOffset: SPACECRAFT_SPAWN.X_OFFSET,
+            yOffset: SPACECRAFT_SPAWN.Y_OFFSET,
+            initialVelocity: SPACECRAFT_SPAWN.INITIAL_VELOCITY
         }
     }
   
@@ -134,12 +124,9 @@ export const LEVELS = {
             }
         },
         spacecraft: {
-            xOffset: 100,
-            yOffset: 200,
-            initialVelocity: {
-                x: 0.5,
-                y: 0
-            }
+            xOffset: SPACECRAFT_SPAWN.X_OFFSET,
+            yOffset: SPACECRAFT_SPAWN.Y_OFFSET,
+            initialVelocity: SPACECRAFT_SPAWN.INITIAL_VELOCITY
         }
     },
 }; 

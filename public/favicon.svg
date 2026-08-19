@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="atmo" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#ffae03" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ffae03" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="64" height="64" fill="#0e172c"/>
+
+  <!-- atmosphere glow -->
+  <circle cx="32" cy="32" r="27" fill="url(#atmo)"/>
+
+  <!-- planet -->
+  <circle cx="32" cy="32" r="19" fill="#ef3e36"/>
+
+  <!-- craters -->
+  <circle cx="25" cy="26" r="3.2" fill="#848c8e" opacity="0.45"/>
+  <circle cx="38" cy="37" r="4.2" fill="#848c8e" opacity="0.45"/>
+  <circle cx="27" cy="40" r="2.4" fill="#848c8e" opacity="0.45"/>
+
+  <!-- highlight -->
+  <circle cx="25" cy="25" r="2.2" fill="#000000" opacity="0.5"/>
+</svg>

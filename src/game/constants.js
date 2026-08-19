@@ -18,18 +18,20 @@ export const PLANET = {
 
 // Spacecraft-specific constants
 export const SPACECRAFT = {
-    INITIAL_X_OFFSET: 100,
-    INITIAL_Y_OFFSET: 200,
     RADIUS: 10,
-    INITIAL_VELOCITY_X: 0.5,
-    INITIAL_VELOCITY_Y: 0,
     INITIAL_ANGLE: 0,
     INITIAL_ANGULAR_VELOCITY: 0,
 };
 
+// Default spawn offset/velocity shared by every level's spacecraft config
+export const SPACECRAFT_SPAWN = {
+    X_OFFSET: 100,
+    Y_OFFSET: 200,
+    INITIAL_VELOCITY: { x: 0.5, y: 0 },
+};
+
 // Nuke-specific constants
 export const NUKES = {
-    VELOCITY_MULTIPLIER: 1.5,
     RADIUS: 5,
     FUSE: 400, // Fuse length in frames
     COLOR: COLORS.battleshipGray,
@@ -40,8 +42,6 @@ export const NUKES = {
 // Asteroid-specific constants
 export const ASTEROIDS = {
     MASS: 1,
-    VELOCITY_MULTIPLIER: 2,
-    COLOR: "var(--battleship-gray)",
 };
 
 
@@ -56,6 +56,3 @@ export const CANVAS = {
     WIDTH: 1500,
     HEIGHT: 800
 };
-
-export const BOOM_RADIUS = 56; // Boom radius
-export const NUKE_FUSE = 400; // Fuse length in frames

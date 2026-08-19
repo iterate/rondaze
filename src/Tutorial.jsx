@@ -6,7 +6,7 @@ import './Tutorial.css';
 import KeyboardKey from './KeyboardKey';
 
 const Tutorial = () => {
-    const [game, setGame] = useState(null);
+    const [, setGame] = useState(null);
     const navigate = useNavigate();
 
     const finishTutorial = useCallback(() => {
@@ -39,16 +39,9 @@ const Tutorial = () => {
             canvas.width = CANVAS.WIDTH;
             canvas.height = CANVAS.HEIGHT;
 
-            const gameInstance = startGame(canvas, ctx, () => {
-                const canvas = document.getElementById('tutorialCanvas');
-                const ctx = canvas.getContext('2d');
-                setGame(startGame(canvas, ctx, () => {}, { 
-                    isTutorial: true, 
-                    level: 3 // Use level 3 which has asteroids to practice with
-                }));
-            }, { 
-                isTutorial: true, 
-                level: 3
+            const gameInstance = startGame(canvas, ctx, () => {}, {
+                isTutorial: true,
+                level: 3 // Use level 3 which has asteroids to practice with
             });
 
             setGame(gameInstance);

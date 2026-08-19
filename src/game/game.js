@@ -49,7 +49,7 @@ export function startGame(canvas, ctx, navigate, options = {}) {
     angular_velocity: SPACECRAFT.INITIAL_ANGULAR_VELOCITY,
   };
 
-  const gameObjects = createGameObjects(planet, levelConfig);
+  const gameObjects = createGameObjects(planet, levelConfig, canvas);
   const inputHandlers = createInputHandlers(spacecraft, isTutorial);
 
   // In tutorial mode, provide a custom navigate function that doesn't actually navigate away
@@ -77,18 +77,19 @@ export function startGame(canvas, ctx, navigate, options = {}) {
   }
 
   // Add keyboard controls
-  document.addEventListener("keydown", (event) => {
+  function handleKeyDownWrapper(event) {
     const result = inputHandlers.handleKeyDown(event);
     if (result === true) {
       gameObjects.fireNuke(spacecraft);
     } else if (result === "togglePause") {
       paused = !paused;
     }
-  });
+  }
+  document.addEventListener("keydown", handleKeyDownWrapper);
   document.addEventListener("keyup", inputHandlers.handleKeyUp);
 
   function cleanup() {
-    document.removeEventListener("keydown", inputHandlers.handleKeyDown);
+    document.removeEventListener("keydown", handleKeyDownWrapper);
     document.removeEventListener("keyup", inputHandlers.handleKeyUp);
     if (animationFrameId) {
       cancelAnimationFrame(animationFrameId);
@@ -139,7 +140,7 @@ export function startGame(canvas, ctx, navigate, options = {}) {
   function update() {
     score += 1;
     gameObjects.generateAsteroid(isTutorial);
-    gameObjects.updateObjects(spacecraft, isTutorial, score, inputHandlers.isArrowUpPressed());
+    gameObjects.updateObjects(spacecraft, isTutorial, score, inputHandlers.isArrowUpPressed(), inputHandlers.isArrowDownPressed());
     gameOver = handleCollisions(spacecraft, planet, gameObjects.asteroids, isTutorial, canvas);
   }
 

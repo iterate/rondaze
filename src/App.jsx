@@ -15,7 +15,7 @@ function App() {
       <Route path="/game" element={<GameLoader />} /> 
       <Route path="/tutorial" element={<Tutorial />} />
       <Route path="/game-over" element={<HighScores />} />
-      <Route path="/high-scores" element={<h1>You Win!</h1>} />
+      <Route path="/high-scores" element={<HighScores />} />
     </Routes>
   </BrowserRouter>
   );
